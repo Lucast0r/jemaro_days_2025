@@ -137,6 +137,7 @@ class PathPublisher(Node):
             # Transform the pose to the map frame
             transformed_pose = self.transform_pose_to_map_frame(car_pose)
             self.path.poses.append(transformed_pose)
+            self.get_logger().info(f"X published : {transformed_pose.pose.position.x} Y published : {transformed_pose.pose.position.y}")
 
         self.publisher.publish(self.path)
         self.get_logger().info(f'Published standard path with {len(self.path.poses)} points')
