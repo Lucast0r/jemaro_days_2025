@@ -149,7 +149,7 @@ class PathPublisher(Node):
             transform = self.tf_buffer.lookup_transform("map", "ZOE3/base_link", rclpy.time.Time())
 
             # Transform the pose using tf2
-            transformed_pose = tf2_geometry_msgs.do_transform_pose(pose_in_car_frame, transform)
+            transformed_pose = tf2_geometry_msgs.do_transform_pose_stamped(pose_in_car_frame, transform)
             return transformed_pose
 
         except (tf2_ros.TransformException) as e:
@@ -171,7 +171,7 @@ class PathPublisher(Node):
             pose_in_map_frame.pose.orientation = Quaternion()
 
             # Transform the pose to the car frame (ZOE3/base_link)
-            transformed_pose = tf2_geometry_msgs.do_transform_pose(pose_in_map_frame, transform)
+            transformed_pose = tf2_geometry_msgs.do_transform_pose_stamped(pose_in_map_frame, transform)
 
             # Return the transformed position in car frame
             return transformed_pose.pose.position.x, transformed_pose.pose.position.y
