@@ -22,7 +22,7 @@ class PathPublisher(Node):
         self.yaw = 0.0  # Initial car heading (yaw) = 0
 
         # Publisher setup
-        self.publisher = self.create_publisher(Path, '/ZOE3/path_follower/Setpath', 10)
+        self.publisher = self.create_publisher(Path, '/ZOE3/path_follower/setPath', 10)
         qos_profile = QoSProfile(reliability=ReliabilityPolicy.BEST_EFFORT, depth=10)
         self.timer = self.create_timer(1.0, self.publish_path)
         self.odom_sub = self.create_subscription(Odometry, '/ZOE3/position/map_ekf_odometry', self.odom_callback, qos_profile)
